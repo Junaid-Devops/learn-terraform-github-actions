@@ -29,6 +29,15 @@ jobs:
           directory: ${{ env.CONFIG_DIRECTORY }}
           speculative: true
 
+      # Step to create workspace in Terraform Cloud
+      - name: Create Terraform Cloud Workspace
+        id: create-workspace
+        uses: hashicorp/tfc-workflows-github/actions/create-workspace@v1.0.0
+        with:
+          organization: ${{ env.TF_CLOUD_ORGANIZATION }}
+          workspace: "test-workflow-by-action"
+          
+
       - name: Terraform Init
         working-directory: ${{ env.CONFIG_DIRECTORY }}       
         run: terraform init
@@ -37,7 +46,8 @@ jobs:
         uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
         id: plan-run
         with:
-          workspace: ${{ env.TF_WORKSPACE }}
+          #workspace: ${{ env.TF_WORKSPACE }}
+          workspace: ${{ steps.create-workspace.outputs.workspace }}
           configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
           plan_only: true
 
