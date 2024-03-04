@@ -27,27 +27,24 @@ jobs:
         with:
           workspace: ${{ env.TF_WORKSPACE }}
           directory: ${{ env.CONFIG_DIRECTORY }}
-          speculative: true
-
-      # Step to create workspace in Terraform Cloud
-      - name: Create Terraform Cloud Workspace
-        uses: sarathkrish/terraform-workspace@v1.2
-        id: create-workspace   
-        with:  
-          workSpaceName: tes-workspace
-          
+          speculative: true          
           
 
       - name: Terraform Init
+        id: create-workspace
         working-directory: ${{ env.CONFIG_DIRECTORY }}       
-        run: terraform init
+        run: |
+          terraform init ...
+          terraform workspace create github-action-test 
+          export TF_WORKSPACE=github-action-test
+         
         
       - name: Create Plan Run
         uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
         id: plan-run
         with:
           #workspace: ${{ env.TF_WORKSPACE }}
-          workspace: ${{ steps.create-workspace.outputs.workspace }}
+          workspace: github-action-test
           configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
           plan_only: true
 
