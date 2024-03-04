@@ -21,13 +21,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Upload Configuration
-        uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
-        id: plan-upload
-        with:
+      #- name: Upload Configuration
+      #  uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
+      #  id: plan-upload
+      #  with:
           #workspace: ${{ env.TF_WORKSPACE }}
-          directory: ${{ env.CONFIG_DIRECTORY }}
-          speculative: true          
+       #   directory: ${{ env.CONFIG_DIRECTORY }}
+       #   speculative: true          
           
 
       - name: Terraform Init
@@ -45,8 +45,9 @@ jobs:
         id: plan-run
         with:
           #workspace: ${{ env.TF_WORKSPACE }}
+          working-directory: ${{ env.CONFIG_DIRECTORY }}
           workspace: github-action-test
-          configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
+          #configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
           plan_only: true
 
       - name: Get Plan Output
