@@ -31,11 +31,13 @@ jobs:
 
       # Step to create workspace in Terraform Cloud
       - name: Create Terraform Cloud Workspace
-        id: create-workspace
-        uses: hashicorp/tfc-workflows-github/actions/create-workspace@v1.0.0
-        with:
-          organization: ${{ env.TF_CLOUD_ORGANIZATION }}
-          workspace: "test-workflow-by-action"
+        uses: sarathkrish/terraform-workspace@v1.2
+        id: create-workspace   
+        with:  
+          workSpaceName: MyTestWorkspace  
+          organizationName: {{env.organization}}  
+          terraformToken: {{secrets.Terraform_Token}}
+          terraformHost: 'app.terraform.io'
           
 
       - name: Terraform Init
