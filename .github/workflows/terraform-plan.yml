@@ -7,7 +7,7 @@ env:
   TF_CLOUD_ORGANIZATION: "Agero"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "learn-terraform-github-actions"
-  CONFIG_DIRECTORY: "./learn-terraform-github-actions/learn-terraform-github-actions/tf-templates"
+  CONFIG_DIRECTORY: "./learn-terraform-github-actions/tf-templates"
 
 jobs:
   terraform:
