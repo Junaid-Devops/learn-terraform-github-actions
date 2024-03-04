@@ -34,10 +34,8 @@ jobs:
         uses: sarathkrish/terraform-workspace@v1.2
         id: create-workspace   
         with:  
-          workSpaceName: MyTestWorkspace  
-          organizationName: {{env.organization}}  
-          terraformToken: {{secrets.Terraform_Token}}
-          terraformHost: 'app.terraform.io'
+          workSpaceName: tes-workspace
+          
           
 
       - name: Terraform Init
