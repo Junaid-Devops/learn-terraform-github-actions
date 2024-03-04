@@ -34,9 +34,10 @@ jobs:
         id: create-workspace
         working-directory: ${{ env.CONFIG_DIRECTORY }}       
         run: |
-          terraform init ...
-          terraform workspace create github-action-test 
+          terraform workspace new github-action-test
+          #terraform workspace create github-action-test 
           export TF_WORKSPACE=github-action-test
+          terraform init
          
         
       - name: Create Plan Run
