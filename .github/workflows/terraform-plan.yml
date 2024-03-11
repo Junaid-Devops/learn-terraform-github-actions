@@ -43,7 +43,7 @@ jobs:
       - uses: sarathkrish/terraform-workspace@v1.2   
         with:  
           workSpaceName: github-action-test
-          organizationName: {{env.TF_CLOUD_ORGANIZATION}}  
+          #organizationName: {{env.TF_CLOUD_ORGANIZATION}}  
           terraformToken: ${{ secrets.TF_API_TOKEN }}
           terraformHost: 'app.terraform.io'
           
