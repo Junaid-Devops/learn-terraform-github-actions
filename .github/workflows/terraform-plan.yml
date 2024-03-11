@@ -6,7 +6,7 @@ on:
 env:
   TF_CLOUD_ORGANIZATION: "Agero"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-  #TF_WORKSPACE: "learn-terraform-github-actions"
+  TF_WORKSPACE: "learn-terraform-github-actions"
   CONFIG_DIRECTORY: "./tf-template"
 
 jobs:
@@ -44,10 +44,10 @@ jobs:
         uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
         id: plan-run
         with:
-          #workspace: ${{ env.TF_WORKSPACE }}
+          workspace: ${{ env.TF_WORKSPACE }}
           working-directory: ${{ env.CONFIG_DIRECTORY }}
-          workspace: github-action-test
-          #configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
+          workspace: ${{ env.TF_WORKSPACE }}
+          configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
           plan_only: true
 
       - name: Get Plan Output
