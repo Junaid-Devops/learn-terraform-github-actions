@@ -29,11 +29,11 @@ jobs:
          directory: ${{ env.CONFIG_DIRECTORY }}
          speculative: true          
 
-      - uses: Bardavon-Health/actions-terraform-cloud-create-workspace@v1.0
-        with:
-          token: ${{ secrets.TF_API_TOKEN }}
-          name: test-action
-          org: Agero
+      # - uses: Bardavon-Health/actions-terraform-cloud-create-workspace@v1.0
+      #   with:
+      #     token: ${{ secrets.TF_API_TOKEN }}
+      #     name: test-action
+      #     org: Agero
 
       - name: Terraform Init
         id: create-workspace
@@ -42,16 +42,8 @@ jobs:
           #terraform workspace new github-action-test
           #terraform workspace create github-action-test 
           #export TF_WORKSPACE=github-action-test
-          terraform init
-
-      
-      # - uses: sarathkrish/terraform-workspace@v1.2   
-      #   with:  
-      #     workSpaceName: github-action-test
-      #     #organizationName: {{env.TF_CLOUD_ORGANIZATION}}  
-      #     terraformToken: ${{ secrets.TF_API_TOKEN }}
-      #     terraformHost: 'app.terraform.io'         
-          
+          terraform init   
+   
       
         
       - name: Create Plan Run
